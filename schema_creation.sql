@@ -1,3 +1,4 @@
+create schema DB_project;
 drop table Answers;
 drop table Questions;
 
