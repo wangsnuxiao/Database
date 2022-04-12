@@ -1,6 +1,11 @@
-create schema DB_project;
-drop table Answers;
-drop table Questions;
+create schema if not exists DB_project;
+drop table if exists Answers;
+drop table if exists Questions;
+drop table if exists User;
+drop table if exists Profile;
+drop table if exists Topics;
+drop table if exists hasChild;
+
 
 create table User (
   uid INTEGER auto_increment primary key ,
@@ -37,7 +42,7 @@ create table Questions(
     qid INTEGER auto_increment primary key ,
     tid INTEGER,
     uid INTEGER,
-    qTitle varchar(20),
+    qTitle varchar(100),
     qBody varchar(500),
     question_created_time timestamp,
     question_solved_time timestamp,
