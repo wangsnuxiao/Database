@@ -29,7 +29,8 @@ create table Profile(
 create table Topics(
   tid INTEGER auto_increment primary key,
   tname varchar(30),
-  parent_id INTEGER
+  parent_id INTEGER,
+  FULLTEXT (tname)
 );
 
 create table hasChild(
@@ -49,7 +50,8 @@ create table Questions(
     question_solved_time timestamp,
     bestAnswer INTEGER,
     foreign key (uid) references User(uid),
-    foreign key (tid) references Topics(tid)
+    foreign key (tid) references Topics(tid),
+    FULLTEXT (qTitle)
 );
 
 create table Answers(
