@@ -1,6 +1,12 @@
 use DB_project;
 drop trigger profile_trigger;
 
+
+-- Create a new user account, together with username, email, pasword, city, state, country and profile
+
+-- Idea: Using profile_trigger to detection any new insertion.
+-- When an new insertion happends to User table
+
 CREATE TRIGGER profile_trigger after Insert on User
      For each row
      begin
