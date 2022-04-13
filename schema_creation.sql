@@ -1,4 +1,5 @@
 create schema if not exists DB_project;
+use DB_project;
 drop table if exists Answers;
 drop table if exists Questions;
 drop table if exists User;
