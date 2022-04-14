@@ -1,7 +1,7 @@
-package com.cs6083.nanoneck.User;
+package com.cs6083.nanoneck.User.mapper;
 
+import com.cs6083.nanoneck.User.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -9,10 +9,10 @@ import java.util.List;
 @Mapper
 @Repository
 public interface UserMapper {
-    @Select("select * from User")
+    //@Select("select * from User")
     List<User> queryUserList();
 
-    @Select("select * from User where uid = #{id}")
+    //@Select("select * from User where uid = #{id}")
     User queryUserById(int id);
 
     int addUser(User user);

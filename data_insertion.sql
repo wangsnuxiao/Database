@@ -39,7 +39,7 @@ values (1, 2, 1, 'sql', 'how to write sql',now(),null,null),
 ;
 
 -- Insertion for Answers table
-INSERT into answers(aid, uid, qid, answer_text,answer_created_time,thumbs_up_num)
+INSERT into Answers(aid, uid, qid, answer_text,answer_created_time,thumbs_up_num)
 values (1, 1, 2, 'because u like it', '2021-12-22', 30),
        (2, 2, 2, 'it makes money', '2021-12-21', 3),
        (3, 3, 2, 'it makes more money', '2021-12-21', 10),
