@@ -46,10 +46,11 @@ call get_answers(2);
 
 -- Q5: For each topic in the topic hierarchy, output the number of questions posted and total number of
 -- answers posted within that topic.
-SELECT topics.tname, count(distinct Answers.qid), count(DISTINCT aid)
-from Questions join Answers on Questions.qid = Answers.qid join Topics on Questions.tid = Topics.tid
-group by Topics.tid
-;
+select Topics.tid,tname,count(distinct Q.qid) total_questions ,count(distinct A.aid) total_answers from Topics
+    left join Questions Q on Topics.tid = Q.tid
+    left join Answers A on Q.qid = A.qid
+    where parent_id is not null
+    group by Topics.tid;
 
 -- Q6: Given a keyword query, output all questions that match the query and that fall into a particular topic,
 -- sorted from highest to lowest relevance.

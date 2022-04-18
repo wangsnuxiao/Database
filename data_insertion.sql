@@ -29,11 +29,11 @@ insert into Questions(qid, tid, uid, qTitle, qBody, question_created_time, quest
 values (1, 2, 1, 'sql', 'how to write sql',now(),null,null),
        (2, 6, 4, 'why you choose cs','please exaplain why you like cs', '2021-12-21', '2021-12-22', 1),
        (3, 5, 2, 'Master Therom', 'the follwoing question is which case of Master therom', '2022-1-1','2022-1-3', 5),
-       (4, 3, 5, 'Is this pating good or not', 'body of painting', '2022-3-12', '2022-4-11', 7)
+       (4, 7, 5, 'Is this pating good or not', 'body of painting', '2022-3-12', '2022-4-11', 7)
 ;
 
 -- Insertion for Answers table
-INSERT into answers(aid, uid, qid, answer_text,answer_created_time,thumbs_up_num)
+INSERT into Answers(aid, uid, qid, answer_text,answer_created_time,thumbs_up_num)
 values (1, 1, 2, 'because u like it', '2021-12-22', 30),
        (2, 2, 2, 'it makes money', '2021-12-21', 3),
        (3, 3, 2, 'it makes more money', '2021-12-21', 10),
