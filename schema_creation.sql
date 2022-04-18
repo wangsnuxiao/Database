@@ -43,7 +43,7 @@ create table Questions(
     question_created_time timestamp,
     question_solved_time timestamp,
     bestAnswer INTEGER,
-    foreign key (uid) references User(uid),
+    foreign key (uid) references User(uid) on delete no action ,
     foreign key (tid) references Topics(tid),
     FULLTEXT (qTitle)
 );
@@ -55,6 +55,6 @@ create table Answers(
   answer_text varchar(500),
   answer_created_time timestamp,
   thumbs_up_num INTEGER,
-  foreign key (uid) references User(uid),
+  foreign key (uid) references User(uid) on delete no action ,
   foreign key (qid) references Questions(qid)
 );

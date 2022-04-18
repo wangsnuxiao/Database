@@ -1,4 +1,4 @@
-package com.cs6083.nanoneck.User;
+package com.cs6083.nanoneck.User.pojo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
