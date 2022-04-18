@@ -24,7 +24,8 @@ create table Profile(
     date_of_birth date,
     description varchar(500),
     level varchar(30),
-    total_thumbs_up integer
+    total_thumbs_up integer,
+    foreign key (uid) references User(uid) on delete CASCADE
 );
 create table Topics(
   tid INTEGER auto_increment primary key,
@@ -45,8 +46,7 @@ create table Questions(
     bestAnswer INTEGER,
     foreign key (uid) references User(uid) on delete no action ,
     foreign key (tid) references Topics(tid),
-    FULLTEXT (qTitle),
-    FULLTEXT (qBody)
+    FULLTEXT (qTitle)
 );
 
 create table Answers(
@@ -57,6 +57,5 @@ create table Answers(
   answer_created_time timestamp,
   thumbs_up_num INTEGER,
   foreign key (uid) references User(uid) on delete no action ,
-  foreign key (qid) references Questions(qid),
-  FULLTEXT (answer_text)
+  foreign key (qid) references Questions(qid)
 );
