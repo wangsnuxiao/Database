@@ -15,7 +15,7 @@ CREATE TRIGGER profile_trigger after Insert on User
      insert into Profile (
        uid, visibility, age, date_of_birth, description, level, total_thumbs_up
      )
-     values (New.uid, 0, null, null, null, 0, 0);
+     values (New.uid, 0, null, null, null, 'noob', 0);
      end;
 -- Test Insertion into User table
 INSERT into User (uid, username, password, email, city, state)
@@ -25,7 +25,7 @@ values (6,'testing','123456','testing@nyu.edu','NYC','NY');
 -- Q2: Insert a new question into the system, by a particular user and
 -- assigned it to a particular topic in the hierarchy.
 INSERT into Questions(qid, tid, uid, qTitle, qBody, question_created_time, question_solved_time, bestAnswer)
-values (2,5,3,'DFS','how to write dfs', now(), null,null);
+values (null,5,3,'DFS','how to write dfs', now(), null,null);
 -- Q3: Write a query that computes for each user their current status
 -- (basic, advanced, or expert status)
 select U.uid, username, level from User U join Profile P on U.uid = P.uid;
@@ -54,14 +54,20 @@ select Topics.tid,tname,count(distinct Q.qid) total_questions ,count(distinct A.
 
 -- Q6: Given a keyword query, output all questions that match the query and that fall into a particular topic,
 -- sorted from highest to lowest relevance.
+INSERT into Questions(qid, tid, uid, qTitle, qBody, question_created_time, question_solved_time, bestAnswer)
+values (null,5,3,'DFS runtime','what is the dfs runtime', now(), null,null);
+
+INSERT into Questions(qid, tid, uid, qTitle, qBody, question_created_time, question_solved_time, bestAnswer)
+values (null,5,3,'DFS sample','what is the dfs sample question', now(), null,null);
+
 drop procedure if exists search;
-create procedure serach(IN searchkey varchar(100),
+create procedure search(IN searchkey varchar(100),
                         IN topic_serachkey varchar(50))
 select qTitle,qBody,T.tname,
        (0.8 * Match(qTitle) Against(searchkey in boolean mode ))
           + (0.6 * Match(T.tname) Against(topic_serachkey in boolean mode)) as relevence
 from Questions join Topics T on T.tid = Questions.tid
 where Match(qTitle) Against(searchkey)
-order by relevence;
+order by relevence  desc;
 
-call serach('sql','database');
+call search('DFS runtime','Algorithm');
