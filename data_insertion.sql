@@ -22,18 +22,12 @@ values (1,'CS',null),      -- Root Topic CS
        (3, 'Art', null),   -- Root Topic Art
        (4, 'DataStructure',1), -- Root Topic DS
        (5, 'Algorithm', 1), -- Root Topic Algo
-       (6, 'Database Design', 2);-- Database Design is the subtopic of Database and CS
-
--- Insertion for hasChild table
-insert into hasChild(parent_id, children_id)
-VALUES (1,2),
-       (1,5),
-       (2,6);
-
+       (6, 'Database Design', 1),-- Database Design is the subtopic of Database and CS
+       (7, 'Paint', 3);
 -- Insertion for Questions table
 insert into Questions(qid, tid, uid, qTitle, qBody, question_created_time, question_solved_time, bestAnswer)
 values (1, 2, 1, 'sql', 'how to write sql',now(),null,null),
-       (2, 1, 4, 'why you choose cs','please exaplain why you like cs', '2021-12-21', '2021-12-22', 1),
+       (2, 6, 4, 'why you choose cs','please exaplain why you like cs', '2021-12-21', '2021-12-22', 1),
        (3, 5, 2, 'Master Therom', 'the follwoing question is which case of Master therom', '2022-1-1','2022-1-3', 5),
        (4, 3, 5, 'Is this pating good or not', 'body of painting', '2022-3-12', '2022-4-11', 7)
 ;

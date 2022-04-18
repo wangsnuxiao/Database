@@ -33,12 +33,6 @@ create table Topics(
   FULLTEXT (tname)
 );
 
-create table hasChild(
-    parent_id Integer ,
-    children_id INTEGER,
-    primary key (parent_id, children_id)
-);
-
 
 create table Questions(
     qid INTEGER auto_increment primary key ,
