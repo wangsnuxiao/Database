@@ -45,7 +45,8 @@ create table Questions(
     bestAnswer INTEGER,
     foreign key (uid) references User(uid) on delete no action ,
     foreign key (tid) references Topics(tid),
-    FULLTEXT (qTitle)
+    FULLTEXT (qTitle),
+    FULLTEXT (qBody)
 );
 
 create table Answers(
@@ -56,5 +57,6 @@ create table Answers(
   answer_created_time timestamp,
   thumbs_up_num INTEGER,
   foreign key (uid) references User(uid) on delete no action ,
-  foreign key (qid) references Questions(qid)
+  foreign key (qid) references Questions(qid),
+  FULLTEXT (answer_text)
 );
