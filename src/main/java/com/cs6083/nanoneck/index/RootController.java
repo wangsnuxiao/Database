@@ -15,4 +15,8 @@ public class RootController {
 	public String unauthorized(){
 		return "views/common/html/403";
 	}
+	@RequestMapping("/index.css")
+	public String indexCSS(){
+		return "views/common/css/index.css";
+	}
 }
