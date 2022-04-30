@@ -5,10 +5,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class indexController {
-	@RequestMapping({"/","/indx"})
+public class RootController {
+	@RequestMapping({"/","/index"})
 	public String toIndex(Model model){
 		model.addAttribute("msg", "hello,shiro");
 		return "views/index";
+	}
+	@RequestMapping("/noauth")
+	public String unauthorized(){
+		return "views/common/html/403";
 	}
 }

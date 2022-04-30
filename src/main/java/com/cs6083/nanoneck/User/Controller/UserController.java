@@ -27,11 +27,6 @@ public class UserController {
     @Autowired
     private UserServiceImpl userService;
 
-    @GetMapping("/test/user/all")
-    public List<User> testGetAllUsers(){
-        List<User> queryUserList = userMapper.queryUserList();
-        return queryUserList;
-    }
 
     @GetMapping("/user/{id}")
     public User getUserById(@PathVariable("id") int id ){
@@ -60,6 +55,7 @@ public class UserController {
     public String login(String username, String password, Model model){
         try{
          userService.login(username, password, model);
+
             return "views/index";
          }catch (UnknownAccountException e){
             model.addAttribute("msg","unknown account");

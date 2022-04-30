@@ -1,13 +1,19 @@
 package com.cs6083.nanoneck.config;
 
+import com.cs6083.nanoneck.User.Service.UserService;
+import com.cs6083.nanoneck.User.Service.UserServiceImpl;
+import com.cs6083.nanoneck.User.pojo.User;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class UserRealm extends AuthorizingRealm {
+	@Autowired
+	UserServiceImpl userService;
 
 	@Override//授权
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
@@ -17,15 +23,16 @@ public class UserRealm extends AuthorizingRealm {
 
 	@Override//认证
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
-		String name = "root";
-		String password = "123456";
-
 		UsernamePasswordToken userToken = (UsernamePasswordToken) authenticationToken;
+		//Connect to AWS Database here
+		User user = userService.
+				queryUserByName(((UsernamePasswordToken) authenticationToken)
+						.getUsername());
 
-		if(!userToken.getUsername().equals(name)){
+		if(user==null){
 			return null; // throw UnknownAccountException
 		}
 		// The shiro will handel the passwrod verification
-		return new SimpleAuthenticationInfo("",password,"");
+		return new SimpleAuthenticationInfo("",user.getPassword(),"");
 	}
 }

@@ -15,6 +15,8 @@ public interface UserMapper {
     //@Select("select * from User where uid = #{id}")
     User queryUserById(int id);
 
+    User queryUserByName(String username);
+
     int addUser(User user);
 
     int updateUser(User user);

@@ -12,6 +12,10 @@
         select * from User where uid = #{id}
     </select>
 
+    <select id="queryUserByName" resultType="User">
+        select * from User where username = #{username}
+    </select>
+
     <insert id="addUser" parameterType="User">
         insert into User (uid, username, password, email, city, state)
         values (null, #{username},#{password},#{email},#{city},#{state})

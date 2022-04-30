@@ -1,6 +1,7 @@
 package com.cs6083.nanoneck.User.Service;
 
 import com.cs6083.nanoneck.User.mapper.UserMapper;
+import com.cs6083.nanoneck.User.pojo.User;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -20,6 +21,16 @@ public class UserServiceImpl implements UserService{
 		UsernamePasswordToken token = new UsernamePasswordToken(username, password);
 
 		subject.login(token);
-
 	}
+
+	@Override
+	public User queryUserById(int id) {
+		return userMapper.queryUserById(id);
+	}
+
+	@Override
+	public User queryUserByName(String username) {
+		return userMapper.queryUserByName(username);
+	}
+
 }
