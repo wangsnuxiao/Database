@@ -71,3 +71,6 @@ where Match(qTitle) Against(searchkey)
 order by relevence  desc;
 
 call search('DFS runtime','Algorithm');
+
+select * from User;
+select * from Questions;

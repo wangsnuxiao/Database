@@ -12,5 +12,12 @@
 <body>
 <div th:replace="views/common/html/navbar"></div>
 <h1>this is forum page</h1>
+
+<tbody>
+<tr th:each="question : ${questions}">
+    <td th:each="entry : ${question}" th:text="${entry.value}"></td><br>
+</tr>
+</tbody>
+
 </body>
 </html>
