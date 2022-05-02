@@ -47,4 +47,11 @@ public class forumController {
         model.addAttribute("questions",result);
         return "views/forums/normalForums";
     }
+
+    @GetMapping("/answerPage")
+    String answerPage(Model model){
+        List<Map<String, Object>> result =  formsDAO.listAllQuestions();
+        model.addAttribute("questions",result);
+        return "views/forums/answerPage";
+    }
 }
