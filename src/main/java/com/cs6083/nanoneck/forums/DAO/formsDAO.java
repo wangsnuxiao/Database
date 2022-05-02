@@ -13,7 +13,9 @@ public class formsDAO {
     @Autowired
     private JdbcTemplate jdbcTemplate;
     public List<Map<String,Object>> listAllQuestions(){
-        String query = "Select * " + "from Questions";
+        String query = "Select * "
+                + "from Questions join User on User.uid = Questions.uid join Topics on Topics.tid = Questions.tid"
+                +" Order by Questions.question_created_time desc ";
         return  jdbcTemplate.queryForList(query);
     }
 }
