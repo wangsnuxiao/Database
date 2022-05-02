@@ -19,8 +19,10 @@ public class question implements Serializable {
     private int uid;
     private String qTitle;
     private String qBody;
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH-mm-ss")
 
+    private  String username;
+    private String tname;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH-mm-ss")
     private Date question_created_time;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH-mm-ss")
     private Date question_solved_time;

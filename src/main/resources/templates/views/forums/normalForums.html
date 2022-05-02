@@ -11,13 +11,29 @@
 </head>
 <body>
 <div th:replace="views/common/html/navbar"></div>
-<center><font size="30" face = 'Brush Script MT', cursive,>Explore Your World</font></center>
-<br>
-<a th:href="csForums">CS</a>
-<br>
-<a th:href="artForums">ART</a>
-<br>
-<a th:href="normalForums">View All</a>
+<tbody>
+<tr th:each="question : ${questions}">
+    Topic:
+    <td th:text="${question.tname}"> </td>
+    uid:
+    <td th:text = "${question.uid}"> </td>
+    Posted by:
+    <td th:text="${question.username}"> </td>
+    <br>
+    Title:
+    <td th:text ="${question.qTitle}">:</td>
+    <br>
+    <td th:text = "${question.qBody}"></td>
+    <br>
+    Answer created at:
+    <td th:text = "${question.question_created_time}"></td>
+    Answer solve at:
+    <td th:text = "${question.question_solved_time}"></td>
 
+    <br>
+    <br>
+
+</tr>
+</tbody>
 </body>
 </html>
