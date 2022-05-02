@@ -18,4 +18,11 @@ public class formsDAO {
                 +" Order by Questions.question_created_time desc ";
         return  jdbcTemplate.queryForList(query);
     }
+    public List<Map<String,Object>> listCurrentAnswers(int qid){
+        String query = "Select * "
+                + "from Questions join Answers on Questions.qid = Answers.qid join User on User.uid = Questions.uid join Topics on Topics.tid = Questions.tid"
+                +" Order by thumbs_up_num desc ";
+        return  jdbcTemplate.queryForList(query);
+
+    }
 }
