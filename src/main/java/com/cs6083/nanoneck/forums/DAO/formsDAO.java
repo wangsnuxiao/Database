@@ -21,12 +21,13 @@ public class formsDAO {
     }
     public List<Map<String,Object>> listCurrentAnswers(int qid){
         String query = "Select * "
-                + "from Questions join Answers on Questions.qid = Answers.qid join User on User.uid = Questions.uid join Topics on Topics.tid = Questions.tid"
-                + "Where Questions.qid = :questionId"
+                + "from Questions join Answers on Questions.qid = Answers.qid " +
+                "join User on User.uid = Questions.uid " +
+                "join Topics on Topics.tid = Questions.tid "
+                + "Where Questions.qid = "+qid
                 +" Order by thumbs_up_num desc ";
-        return  jdbcTemplate.queryForList(
-                query,
-        new MapSqlParameterSource().addValue("questionId", qid));
+
+        return jdbcTemplate.queryForList(query);
 
     }
 }
