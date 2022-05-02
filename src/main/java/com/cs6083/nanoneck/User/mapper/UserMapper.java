@@ -3,6 +3,8 @@ package com.cs6083.nanoneck.User.mapper;
 import com.cs6083.nanoneck.User.pojo.User;
 import com.cs6083.nanoneck.User.pojo.userProfile;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -27,4 +29,11 @@ public interface UserMapper {
     userProfile getUserProfileByName(String username);
 
     userProfile getUserProfileById(int id);
+    @Select(
+            "select COALESCE(SUM(A.thumbs_up_num),0 ) from User left join Answers A on User.uid = A.uid\n"
+                    + "        group by User.uid having User.uid=#{id};")
+    int getUserLikes(int id);
+
+  @Update("update Profile set level=#{id} where uid=#{id};")
+  void updateUserLevel(int id, String level);
 }

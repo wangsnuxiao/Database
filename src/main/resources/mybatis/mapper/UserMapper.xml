@@ -33,7 +33,8 @@
     <select id="getUserProfileById" parameterType="int" resultType="userProfile">
         select username,email,age,date_of_birth,description,level,total_thumbs_up,visibility,state,city
         from User join Profile P on User.uid = P.uid
-        where User.uid=#{id};
+        where User.uid= #{id};
     </select>
+
 
 </mapper>
