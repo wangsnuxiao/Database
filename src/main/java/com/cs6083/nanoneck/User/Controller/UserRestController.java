@@ -1,5 +1,6 @@
 package com.cs6083.nanoneck.User.Controller;
 
+import com.cs6083.nanoneck.User.Service.UserAsyncService;
 import com.cs6083.nanoneck.User.mapper.UserMapper;
 import com.cs6083.nanoneck.User.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +13,10 @@ import java.util.List;
 public class UserRestController {
 	@Autowired
 	UserMapper userMapper;
+
+
 	@GetMapping("/test/user/all")
 	public List<User> testGetAllUsers(){
-		List<User> queryUserList = userMapper.queryUserList();
-		return queryUserList;
+		return userMapper.queryUserList();
 	}
 }

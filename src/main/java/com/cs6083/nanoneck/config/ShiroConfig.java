@@ -6,8 +6,6 @@ import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -35,7 +33,7 @@ public class ShiroConfig {
 		filterMap.put("/user/add","perms[user:add]");
 		filterMap.put("/user/update","authc");
 		filterMap.put("test/user/*","anon");
-//		filterMap.put("/user/add","authc");
+		filterMap.put("/user/profile","authc");
 
     shiroFilterFactoryBean.setFilterChainDefinitionMap(filterMap);
 	//设置登录的请求

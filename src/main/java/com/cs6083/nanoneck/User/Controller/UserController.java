@@ -1,14 +1,10 @@
 package com.cs6083.nanoneck.User.Controller;
 
-import com.cs6083.nanoneck.User.Service.UserService;
 import com.cs6083.nanoneck.User.Service.UserServiceImpl;
 import com.cs6083.nanoneck.User.mapper.UserMapper;
 import com.cs6083.nanoneck.User.pojo.User;
-import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.List;
 
 @Controller
 public class UserController {
@@ -54,8 +49,7 @@ public class UserController {
     @PostMapping("/user/login")
     public String login(String username, String password, Model model){
         try{
-            userService.login(username, password, model);
-
+            userService.login(username, password);
             return "views/index";
          }catch (UnknownAccountException e){
             model.addAttribute("msg","unknown account");
@@ -65,10 +59,32 @@ public class UserController {
             return "views/user/login";
         }
     }
+
     @GetMapping("/logout")
     public String logout(){
         userService.logout();
         return "views/index";
+    }
+
+    @GetMapping("/user/profile")
+    public String toProfile(){
+        return "views/user/profile";
+    }
+
+    @GetMapping("/user/signup")
+    public String tosignup(){
+        return "views/user/signup";
+    }
+
+    @PostMapping("/user/signup")
+    public String handle_signup_request(String email,String username,String password,String city,String state, Model model){
+        try{
+            userService.signup(email,username,password,city,state);
+            return "redirect:/index";
+        }catch (Exception e){
+            model.addAttribute("msg","Duplicate username!");
+            return "views/user/signup";
+        }
     }
 
 }
