@@ -54,7 +54,7 @@ public class UserController {
     @PostMapping("/user/login")
     public String login(String username, String password, Model model){
         try{
-         userService.login(username, password, model);
+            userService.login(username, password, model);
 
             return "views/index";
          }catch (UnknownAccountException e){
@@ -65,8 +65,9 @@ public class UserController {
             return "views/user/login";
         }
     }
-    @PostMapping("/logout")
+    @GetMapping("/logout")
     public String logout(){
+        userService.logout();
         return "views/index";
     }
 

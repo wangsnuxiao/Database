@@ -1,6 +1,6 @@
 <div th:fragment="navbar">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href=" ">NanoNeck</a>
+        <a class="navbar-brand" href="/">NanoNeck</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -13,6 +13,11 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="/forums">Forums <span class="sr-only">(current)</span></a>
                 </li>
+
+                <form class="form-inline my-2 my-lg-0" action="/handler/customer_form.php" method="post">
+                    <input class="form-control mr-sm-2" type="Query" placeholder="search" aria-label="Search" name="cid">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Query</button>
+                </form>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Dropdown
@@ -25,10 +30,14 @@
                     </div>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0" action="/handler/customer_form.php" method="post">
-                <input class="form-control mr-sm-2" type="Query" placeholder="search" aria-label="Search" name="cid">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Query</button>
-            </form>
+
+            <div shiro:notAuthenticated="">
+                <a class="btn btn-success" th:href="@{/toLogin}">Login</a>
+                <a class="btn btn-primary" th:href="@{/signup}">Register</a>
+            </div>
+            <div shiro:Authenticated>
+                    <a class="btn btn-danger" href="/logout">Logout <span class="sr-only">(current)</span></a>
+            </div>
         </div>
     </nav>
 </div>

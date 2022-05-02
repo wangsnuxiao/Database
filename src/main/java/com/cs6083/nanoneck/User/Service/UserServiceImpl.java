@@ -23,6 +23,10 @@ public class UserServiceImpl implements UserService{
 		subject.login(token);
 	}
 
+	public void logout(){
+		SecurityUtils.getSubject().logout();
+	}
+
 	@Override
 	public User queryUserById(int id) {
 		return userMapper.queryUserById(id);
