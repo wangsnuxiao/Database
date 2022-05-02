@@ -2,6 +2,7 @@ package com.cs6083.nanoneck.forums.DAO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -21,8 +22,11 @@ public class formsDAO {
     public List<Map<String,Object>> listCurrentAnswers(int qid){
         String query = "Select * "
                 + "from Questions join Answers on Questions.qid = Answers.qid join User on User.uid = Questions.uid join Topics on Topics.tid = Questions.tid"
+                + "Where Questions.qid = :questionId"
                 +" Order by thumbs_up_num desc ";
-        return  jdbcTemplate.queryForList(query);
+        return  jdbcTemplate.queryForList(
+                query,
+        new MapSqlParameterSource().addValue("questionId", qid));
 
     }
 }

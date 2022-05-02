@@ -30,7 +30,7 @@
     Answer solve at:
     <td th:text = "${question.question_solved_time}"></td>
     <td th:text = "${question.question_solved_time} ?:'Not Solved Yet'"/>
-    <a th:href="answerPage+'?'+${question.qid}">View Answers</a>
+    <a th:href="answerPage+'/'+${question.qid}">View Answers</a>
     <br>
     <br>
 
