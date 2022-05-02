@@ -1,12 +1,11 @@
 package com.cs6083.nanoneck.config;
 
+import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -31,10 +30,10 @@ public class ShiroConfig {
     role: 拥有某个角色权限才能访问
     */
 		Map<String, String> filterMap = new LinkedHashMap<>();
-		filterMap.put("/user/add","perms[user:add");
+		filterMap.put("/user/add","perms[user:add]");
 		filterMap.put("/user/update","authc");
 		filterMap.put("test/user/*","anon");
-//		filterMap.put("/user/add","authc");
+		filterMap.put("/user/profile","authc");
 
     shiroFilterFactoryBean.setFilterChainDefinitionMap(filterMap);
 	//设置登录的请求
@@ -58,5 +57,11 @@ public class ShiroConfig {
 	@Bean(name="userRealm")
 	public UserRealm userRealm(){
 		return new UserRealm();
+	}
+
+	//整合ShiroDialect: 用来整合shiro 和 thymeleaf
+	@Bean
+	public ShiroDialect getShiroDialect(){
+		return new ShiroDialect();
 	}
 }

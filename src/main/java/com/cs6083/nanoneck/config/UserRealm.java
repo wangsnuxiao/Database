@@ -1,9 +1,8 @@
 package com.cs6083.nanoneck.config;
 
-import com.cs6083.nanoneck.User.Service.UserService;
+
 import com.cs6083.nanoneck.User.Service.UserServiceImpl;
 import com.cs6083.nanoneck.User.pojo.User;
-import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
@@ -16,7 +15,13 @@ public class UserRealm extends AuthorizingRealm {
 
 	@Override//授权
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-
+//		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+//		info.addStringPermission("user:add");
+//		//拿到当前登录的对象
+//		Subject subject = SecurityUtils.getSubject();
+//		User principal = (User) subject.getPrincipal();
+//
+//		return info;
 		return null;
 	}
 
@@ -27,11 +32,11 @@ public class UserRealm extends AuthorizingRealm {
 		User user = userService.
 				queryUserByName(((UsernamePasswordToken) authenticationToken)
 						.getUsername());
-
+		// If user == null that means there is no user in our database
 		if(user==null){
 			return null; // throw UnknownAccountException
 		}
-		// The shiro will handel the passwrod verification
-		return new SimpleAuthenticationInfo("",user.getPassword(),"");
+		// The shiro will handle the password verification
+		return new SimpleAuthenticationInfo(user,user.getPassword(),"");
 	}
 }

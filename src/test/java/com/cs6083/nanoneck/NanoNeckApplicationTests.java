@@ -11,10 +11,13 @@ import org.springframework.jdbc.core.JdbcTemplate;
 class NanoNeckApplicationTests {
     @Autowired
     UserMapper userMapper;
+    @Autowired
+    UserServiceImpl userService;
     @Test
     void contextLoads() {
 
-        System.out.println(userMapper.queryUserList());
+        //System.out.println(userMapper.queryUserList());
+        //userService.getUserProfile();
     }
 
 
