@@ -43,10 +43,13 @@ public class UserServiceImpl implements UserService{
 	public userProfile getUserProfile(){
 		User user = (User) SecurityUtils.getSubject().getPrincipal();
 		userProfile profile = userMapper.getUserProfileById(user.getUid());
+		int likes = userMapper.getUserLikes(user.getUid());
+		profile.setTotal_thumbs_up(likes);
+		updateLevel(user,profile,likes);
     	System.out.println(profile);
 		System.out.println("user ID: "+user.getUid());
-
-		return userMapper.getUserProfileById(user.getUid());
+		System.out.println(likes);
+		return profile;
 	}
 
 	@Override
@@ -57,6 +60,18 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public User queryUserByName(String username) {
 		return userMapper.queryUserByName(username);
+	}
+
+	private void updateLevel(User user, userProfile profile,int likes){
+		if (likes > 10 && likes <20){
+			profile.setLevel("Golden Member");
+			// update to database
+			userMapper.updateUserLevel(user.getUid(),"Golden Member");
+		}else if (likes > 20){
+			profile.setLevel("Diamond Member");
+			// update to database
+			userMapper.updateUserLevel(user.getUid(),"Diamond Member");
+		}
 	}
 
 }
