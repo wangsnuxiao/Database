@@ -2,7 +2,6 @@ package com.cs6083.nanoneck.User.Service;
 
 import com.cs6083.nanoneck.User.pojo.User;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 @Service
 public interface UserService  {

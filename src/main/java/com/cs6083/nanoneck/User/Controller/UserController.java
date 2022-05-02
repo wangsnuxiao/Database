@@ -67,7 +67,8 @@ public class UserController {
     }
 
     @GetMapping("/user/profile")
-    public String toProfile(){
+    public String toProfile(Model model){
+        model.addAttribute("profile",userService.getUserProfile());
         return "views/user/profile";
     }
 

@@ -2,6 +2,7 @@ package com.cs6083.nanoneck.User.Service;
 
 import com.cs6083.nanoneck.User.mapper.UserMapper;
 import com.cs6083.nanoneck.User.pojo.User;
+import com.cs6083.nanoneck.User.pojo.userProfile;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -37,6 +38,15 @@ public class UserServiceImpl implements UserService{
 
 	public void logout(){
 		SecurityUtils.getSubject().logout();
+	}
+
+	public userProfile getUserProfile(){
+		User user = (User) SecurityUtils.getSubject().getPrincipal();
+		userProfile profile = userMapper.getUserProfileById(user.getUid());
+    	System.out.println(profile);
+		System.out.println("user ID: "+user.getUid());
+
+		return userMapper.getUserProfileById(user.getUid());
 	}
 
 	@Override

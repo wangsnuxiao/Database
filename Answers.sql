@@ -17,6 +17,7 @@ CREATE TRIGGER profile_trigger after Insert on User
      )
      values (New.uid, 0, null, null, null, 'noob', 0);
      end;
+
 -- Test Insertion into User table
 INSERT into User (uid, username, password, email, city, state)
 values (6,'testing','123456','testing@nyu.edu','NYC','NY');

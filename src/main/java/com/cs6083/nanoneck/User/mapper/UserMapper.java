@@ -1,6 +1,7 @@
 package com.cs6083.nanoneck.User.mapper;
 
 import com.cs6083.nanoneck.User.pojo.User;
+import com.cs6083.nanoneck.User.pojo.userProfile;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -22,4 +23,8 @@ public interface UserMapper {
     int updateUser(User user);
 
     int deleteUser(int id);
+
+    userProfile getUserProfileByName(String username);
+
+    userProfile getUserProfileById(int id);
 }
