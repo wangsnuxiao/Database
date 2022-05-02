@@ -14,7 +14,12 @@ import java.util.Map;
 public class forumController {
     @Autowired
     private formsDAO formsDAO;
-
+    @GetMapping("/paint")
+    public  String paint(Model model){
+        List<Map<String, Object>> result =  formsDAO.listPaintQuestions();
+        model.addAttribute("questions",result);
+        return "views/forums/paint";
+    }
     @GetMapping("/forums")
     public String forumListing(Model model) {
         List<Map<String, Object>> result =  formsDAO.listAllQuestions();
@@ -32,14 +37,23 @@ public class forumController {
     }
     @GetMapping("/algorithm")
     public String algorithm(Model model){
+
+        List<Map<String, Object>> result =  formsDAO.listAlgorithmQuestions();
+        model.addAttribute("questions",result);
         return "views/forums/algorithm";
     }
     @GetMapping("/databaseDesign")
     public String dbDesign(Model model){
+
+        List<Map<String, Object>> result =  formsDAO.listDbDesignQuestions();
+        model.addAttribute("questions",result);
         return "views/forums/databaseDesign";
     }
     @GetMapping("/programmingLanguage")
     public String programmingLanguage(Model model){
+
+        List<Map<String, Object>> result =  formsDAO.listProgrammingLanguageQuestions();
+        model.addAttribute("questions",result);
         return "views/forums/programmingLanguage";
     }
     @GetMapping("/normalForums")
@@ -52,7 +66,7 @@ public class forumController {
     @GetMapping("/answerPage/{qid}")
     public String answerPage(@PathVariable("qid") int qid, Model model){
         List<Map<String, Object>> result =  formsDAO.listCurrentAnswers(qid);
-        model.addAttribute("questions",result);
+        model.addAttribute("answers",result);
         return "views/forums/answerPage";
     }
 }

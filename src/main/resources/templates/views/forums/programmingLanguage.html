@@ -10,6 +10,30 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
-This is for Programming Language
+<tbody>
+<tr th:each="question : ${questions}">
+    Topic:
+    <td th:text="${question.tname}"> </td>
+    uid:
+    <td th:text = "${question.uid}"> </td>
+    Posted by:
+    <td th:text="${question.username}"> </td>
+    <br>
+    Title:
+    <td th:text ="${question.qTitle}">:</td>
+    <br>
+    <td th:text = "${question.qBody}"></td>
+    <br>
+    Question created at:
+    <td th:text = "${question.question_created_time}"></td>
+    Question solve at:
+    <td th:text = "${question.question_solved_time}"></td>
+    <td th:text = "${question.question_solved_time} ?:'Not Solved Yet'"/>
+    <a th:href="answerPage+'/'+${question.qid}">View Answers</a>
+    <br>
+    <br>
+
+</tr>
+</tbody>
 </body>
 </html>
