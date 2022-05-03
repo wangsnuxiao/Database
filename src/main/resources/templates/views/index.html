@@ -10,13 +10,14 @@
     <title>Title</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
-<body>
+
+<body style="background-color:powderblue;">
 <div th:replace="views/common/html/navbar"></div>
 
-<h1>Index Page</h1>
+<font size="30" face = 'Brush Script MT', cursive,> Index Page</font>
 <p th:text="${msg}"></p>
 <div shiro:Authenticated >
-    <h1> Welcome Back!     <shiro:principal property="username"/></h1>
+    <center><font size="30" face = 'Brush Script MT', cursive,>Welcome back!  <shiro:principal property="username"/></font></center>
 </div>
 </body>
 </html>
