@@ -21,7 +21,7 @@
             <p class="card-text" th:text="${question.qBody}"></p>
             <p class="card-text" th:text="${question.question_created_time}"></p>
             <p th:text = "${question.question_solved_time} ?:'Not Solved Yet'"/>
-            <a th:href="editPage+'/'+${question.qid}" class="btn btn-primary">Edit</a>
+            <a th:href="'/'+answerPage+'/'+${question.qid}" class="btn btn-primary">Edit</a>
         </div>
     </div>
 
