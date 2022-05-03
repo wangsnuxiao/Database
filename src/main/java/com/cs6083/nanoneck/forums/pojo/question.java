@@ -27,7 +27,9 @@ public class question implements Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH-mm-ss")
     private Date question_solved_time;
     private  int bestAnswer;
+
 }
+
 
 
 

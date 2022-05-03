@@ -11,8 +11,26 @@
 </head>
 <body>
 <div th:replace="views/common/html/navbar"></div>
+<tbody>
+<tr th:each="answer : ${answers}">
+    Answered by:
+    <td th:text="${answer.username}"> </td>
+    uid:
+    <td th:text = "${answer.uid}"> </td>
+    <br>
+    Body:
+    <br>
+    <td th:text ="${answer.answer_text}">:</td>
+    <br>
+    Total thumbs up:
+    <td th:text = "${answer.thumbs_up_num}"></td>
+    <br>
+    Answer created at:
+    <td th:text = "${answer.answer_created_time}"></td>
+    <br>
+    <br>
 
-This is answer page
-
+</tr>
+</tbody>
 </body>
 </html>
