@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 @Repository
@@ -23,6 +24,13 @@ public interface formsMapper {
 
   @Insert(
       "insert into Questions(qid, tid, uid, qTitle, qBody, question_created_time, question_solved_time, bestAnswer)\n"
-          + "values (null, #{tid}, #{uid},#{qTitle}, qBody,now(),null,null);")
+          + "values (null, #{tid}, #{uid},#{qTitle}, #{qBody},now(),null,null);")
   void insertPost(int tid, int uid, String qTitle, String qBody);
+
+  @Select(
+      "select * from Questions join Topics T on T.tid = Questions.tid\n"
+          + " join User U on U.uid = Questions.uid\n"
+          + " where Match(qTitle) Against('${qTitle}')\n"
+          + " order by (0.8 * Match(qTitle) Against('${qTitle}' in boolean mode ))  desc;")
+  List<Map<String, Object>> SearchQuestionsByTitle(String qTitle);
 }

@@ -14,8 +14,9 @@
                     <a class="nav-link" href="/forums">Forums <span class="sr-only">(current)</span></a>
                 </li>
 
-                <form class="form-inline my-2 my-lg-0" action="/handler/customer_form.php" method="post">
-                    <input class="form-control mr-sm-2" type="Query" placeholder="search" aria-label="Search" name="cid">
+                <form class="form-inline my-2 my-lg-0" action="/forums/search" method="post">
+                    <input class="form-control mr-sm-2" type="Query" placeholder="search question Title"
+                           aria-label="Search" name="qTitle">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Query</button>
                 </form>
                 <li class="nav-item dropdown">
@@ -24,7 +25,9 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="/forums/newpost">New Post</a>
+                        <a class="dropdown-item" href="/forums/MyPosts">My Posts</a>
                     </div>
+
                 </li>
             </ul>
 

@@ -94,4 +94,17 @@ public class forumController {
         model.addAttribute("msg","New Post submit successfully!!");
         return "views/index";
     }
+    @GetMapping("/forums/MyPosts")
+    public String myPosts(Model model){
+        User user = (User) SecurityUtils.getSubject().getPrincipal();
+        model.addAttribute("questions",formsDAO.MyQuestions(user.getUid()));
+        return "views/forums/myPost";
+    }
+    @PostMapping("/forums/search")
+    public String searchPost(String qTitle ,Model model){
+        List<Map<String,Object>> result = formsMapper.SearchQuestionsByTitle(qTitle);
+        System.out.println(result);
+        model.addAttribute("questions",result);
+        return "views/forums/searchResult";
+    }
 }

@@ -58,4 +58,13 @@ public class formsDAO {
                 +" Order by Questions.question_created_time desc ";
         return  jdbcTemplate.queryForList(query);
     }
+
+    public List<Map<String,Object>> MyQuestions(int uid){
+        String query = "Select * "
+                + "from Questions join User on User.uid = Questions.uid join Topics on Topics.tid = Questions.tid "
+                + "where User.uid = "+ uid
+                +" Order by Questions.question_created_time desc ";
+        return  jdbcTemplate.queryForList(query);
+    }
+
 }
