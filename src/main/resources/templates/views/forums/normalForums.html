@@ -15,33 +15,16 @@
 <tr th:each="question : ${questions}">
     <div class="card w-75">
         <div class="card-body">
-            <h5 class="card-title" th:text="${question.tname}">Card title</h5>
-            <h6 class="card-subtitle text-muted" th:text="'Section: '+${question.qTitle}">Support card subtitle</h6>
-            <h6 class="card-subtitle text-muted" th:text="'Author: '+${question.username}">Support card subtitle</h6>
+            <h5 class="card-title" th:text="${question.qTitle}">Card title</h5>
+            <p class="card-text" th:text="'Section: '+${question.tname}">Support card subtitle</p>
+            <p class="card-text" th:text="'Author: '+${question.username}">Support card subtitle</p>
             <p class="card-text" th:text="${question.qBody}"></p>
-            <a href="#" class="btn btn-primary">Button</a>
+            <p class="card-text" th:text="${question.question_created_time}"></p>
+            <p th:text = "${question.question_solved_time} ?:'Not Solved Yet'"/>
+            <a th:href="answerPage+'/'+${question.qid}" class="btn btn-primary">I am interested!</a>
         </div>
     </div>
-    Topic:
-    <td th:text="${question.tname}"> </td>
-    uid:
-    <td th:text = "${question.uid}"> </td>
-    Posted by:
-    <td th:text="${question.username}"> </td>
-    <br>
-    Title:
-    <td th:text ="${question.qTitle}">:</td>
-    <br>
-    <td th:text = "${question.qBody}"></td>
-    <br>
-    Question created at:
-    <td th:text = "${question.question_created_time}"></td>
-    Question solve at:
-    <td th:text = "${question.question_solved_time}"></td>
-    <td th:text = "${question.question_solved_time} ?:'Not Solved Yet'"/>
-    <a th:href="answerPage+'/'+${question.qid}">View Answers</a>
-    <br>
-    <br>
+
 </tr>
 </tbody>
 </body>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/forums/newpost" method="post">
+
+    <fieldset><legend>Enter your information in the form below:</legend>
+
+
+        <p><label>Question Title: <input name="qTitle" size="40" maxlength="60"></label></p>
+
+        <p><label>Topic:
+            <select name="tid">
+                <option value=2>Database</option>
+                <option value=4>DataStructure</option>
+                <option value=5>Algorithm</option>
+                <option value=6>Database Design</option>
+                <option value=7>Paint</option>
+            </select></label></p>
+
+        <p><label>Question body: <textarea name="qBody" rows="10" cols="40"></textarea></label></p>
+
+    </fieldset>
+
+    <p align="center"><input type="submit" name="submit" value="Submit My Information"></p>
+
+</form>
+</body>
+</html>

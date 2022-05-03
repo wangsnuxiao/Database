@@ -34,6 +34,7 @@ public class ShiroConfig {
 		filterMap.put("/user/update","authc");
 		filterMap.put("test/user/*","anon");
 		filterMap.put("/user/profile","authc");
+		filterMap.put("/forums/newpost","authc");
 
     shiroFilterFactoryBean.setFilterChainDefinitionMap(filterMap);
 	//设置登录的请求
