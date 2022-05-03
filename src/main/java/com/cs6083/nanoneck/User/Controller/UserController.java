@@ -56,7 +56,7 @@ public class UserController {
             model.addAttribute("msg","unknown account");
             return "views/user/login";
         }catch (IncorrectCredentialsException e){
-            model.addAttribute("msg","wrong username");
+            model.addAttribute("msg","Wrong Username or password");
             return "views/user/login";
         }
     }
