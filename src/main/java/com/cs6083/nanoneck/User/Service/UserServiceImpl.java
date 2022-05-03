@@ -73,5 +73,8 @@ public class UserServiceImpl implements UserService{
 			userMapper.updateUserLevel(user.getUid(),"Diamond Member");
 		}
 	}
+	public void updateUserInfo(int uid, String email,String phone,String city,String state){
+		userMapper.updateUserInfo(uid,email,city,state);
+	}
 
 }

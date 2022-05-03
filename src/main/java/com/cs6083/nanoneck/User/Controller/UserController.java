@@ -3,6 +3,7 @@ package com.cs6083.nanoneck.User.Controller;
 import com.cs6083.nanoneck.User.Service.UserServiceImpl;
 import com.cs6083.nanoneck.User.mapper.UserMapper;
 import com.cs6083.nanoneck.User.pojo.User;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,6 +87,16 @@ public class UserController {
             model.addAttribute("msg","Duplicate username!");
             return "views/user/signup";
         }
+    }
+
+    @PostMapping("/user/profile")
+    public String updateUserInfo(String state, String city, String email, String phone, Model model){
+        User user = (User) SecurityUtils.getSubject().getPrincipal();
+        System.out.println(city);
+        System.out.println(email);
+        System.out.println(state);
+        userService.updateUserInfo(user.getUid(),email,phone,city,state);
+    return "redirect:/user/profile";
     }
 
 }

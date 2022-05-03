@@ -36,4 +36,8 @@ public interface UserMapper {
 
   @Update("update Profile set level=#{id} where uid=#{id};")
   void updateUserLevel(int id, String level);
+
+  @Update("update User set email=#{email}, city=#{city}, state=#{state} where User.uid=#{uid}")
+    void updateUserInfo(int uid, String email,String city,String state);
+
 }
