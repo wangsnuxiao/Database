@@ -11,26 +11,69 @@
 </head>
 <body>
 <div th:replace="views/common/html/navbar"></div>
+
+<div class="card w-100">
+    <div class="card-body">
+        <h5 class="card-title" th:text="${question.qTitle}">Card title</h5>
+        <p class="card-text" th:text="'Author: '+${question.username}">Support card subtitle</p>
+        <p class="card-text" th:text="${question.qBody}"></p>
+        <p class="card-text" th:text="${question.question_created_time}"></p>
+    </div>
+</div>
+
+
 <tbody>
 <tr th:each="answer : ${answers}">
-    Answered by:
-    <td th:text="${answer.username}"> </td>
-    uid:
-    <td th:text = "${answer.uid}"> </td>
-    <br>
-    Body:
-    <br>
-    <td th:text ="${answer.answer_text}">:</td>
-    <br>
-    Total thumbs up:
-    <td th:text = "${answer.thumbs_up_num}"></td>
-    <br>
-    Answer created at:
-    <td th:text = "${answer.answer_created_time}"></td>
-    <br>
-    <br>
-
+    <div class="container-fluid mt-100">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <div class="media flex-wrap w-100 align-items-center"> <img src="https://i.imgur.com/iNmBizf.jpg" class="d-block ui-w-40 rounded-circle" alt="">
+                            <div class="media-body ml-3"> <p th:text="${answer.username}">Tom Harry</p>
+                            </div>
+                            <div class="text-muted small ml-3">
+                                <div>Answered since <strong th:text ="${answer.answer_created_time}"></strong></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p th:text=" ${answer.answer_text}"> </p>
+                    </div>
+                    <div class="card-footer d-flex flex-wrap justify-content-between align-items-center px-0 pt-0 pb-3">
+                        <div>
+                        <form th:action="@{/answerPage/like}" method="post">
+                            <input name="aid" hidden th:value="${answer.aid}">
+                            <input name="qid" hidden th:value="${question.qid}">
+                            <button type="submit" class="btn btn-primary btn-sm">Like</button>
+                        </form>
+                            <strong th:text="${answer.thumbs_up_num}">4</strong>
+                        </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    </div>
 </tr>
 </tbody>
+
+
+<form action="/answerPage/submit"  method="post">
+    <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
+        <div class="d-flex flex-start w-100">
+            <input hidden name="qid" th:value="${question.qid}">
+            <div class="form-outline w-100">
+                <input class="form-control"  rows="4"
+                           style="background: #fff;" name="answer_text">
+            </div>
+        </div>
+        <div class="float-end mt-2 pt-1">
+            <button type="submit" class="btn btn-primary btn-sm">Post Reply</button>
+        </div>
+    </div>
+</form>
+
+</div>
 </body>
 </html>

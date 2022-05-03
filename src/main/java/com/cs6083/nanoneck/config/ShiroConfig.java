@@ -36,6 +36,7 @@ public class ShiroConfig {
 		filterMap.put("/user/profile","authc");
 		filterMap.put("/forums/newpost","authc");
 		filterMap.put("/forums/MyPosts","authc");
+		filterMap.put("/answerPage/submit","authc");
 
     shiroFilterFactoryBean.setFilterChainDefinitionMap(filterMap);
 	//设置登录的请求

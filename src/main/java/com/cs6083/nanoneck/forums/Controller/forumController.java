@@ -76,9 +76,25 @@ public class forumController {
         //List<Map<String, Object>> result =  formsDAO.listCurrentAnswers(qid);
         List<answer> result = formsMapper.getAnswerByQuestionId(qid);
         model.addAttribute("answers",result);
+        //System.out.println(formsMapper.getQuestionById(qid));
+        model.addAttribute("question",formsMapper.getQuestionById(qid));
         return "views/forums/answerPage";
     }
 
+    @PostMapping("/answerPage/submit")
+    public String submitReply(String qid,String answer_text){
+        //System.out.println(qid);
+        //System.out.println(answer_text);
+        User user = (User) SecurityUtils.getSubject().getPrincipal();
+        formsMapper.submitReplay(user.getUid(),qid,answer_text);
+        return "redirect:/answerPage/"+qid;
+    }
+
+    @PostMapping("/answerPage/like")
+    public String likeAnswer(String aid,String qid){
+        formsMapper.addLike(aid);
+        return "redirect:/answerPage/"+qid;
+    }
     @GetMapping("/forums/newpost")
     public String newPost(){
         return "views/forums/newPost";
