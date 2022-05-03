@@ -13,6 +13,15 @@
 <div th:replace="views/common/html/navbar"></div>
 <tbody>
 <tr th:each="question : ${questions}">
+    <div class="card w-75">
+        <div class="card-body">
+            <h5 class="card-title" th:text="${question.tname}">Card title</h5>
+            <h6 class="card-subtitle text-muted" th:text="'Section: '+${question.qTitle}">Support card subtitle</h6>
+            <h6 class="card-subtitle text-muted" th:text="'Author: '+${question.username}">Support card subtitle</h6>
+            <p class="card-text" th:text="${question.qBody}"></p>
+            <a href="#" class="btn btn-primary">Button</a>
+        </div>
+    </div>
     Topic:
     <td th:text="${question.tname}"> </td>
     uid:
@@ -33,7 +42,6 @@
     <a th:href="answerPage+'/'+${question.qid}">View Answers</a>
     <br>
     <br>
-
 </tr>
 </tbody>
 </body>

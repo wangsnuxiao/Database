@@ -14,30 +14,20 @@
 <center><font size="30" face = 'Brush Script MT', cursive,>Explore Your World</font></center>
 <br>
 
-<div class="container">
-    <div class="row">
-        <a th:href="csForums" class="col">
-            <img src="../static/cs-c-s-letter-logo-design-free-vector.jpeg" class="img-fluid : 100%" >
-        </a>
+
+<div class="card" style="width: 18rem;">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">Website Topics</h5>
+        <p class="card-text">Welcome to our community Drive forum! Here are the topics we discuss here!</p>
     </div>
-    <div class="row">
-        <div class="col">
-            1 of 3
-        </div>
-        <div class="col">
-            2 of 3
-        </div>
-        <div class="col">
-            3 of 3
-        </div>
-    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item"><a th:href="csForums" class="col">
+            CS
+        </a></li>
+        <li class="list-group-item"><a th:href="artForums">ART</a></li>
+        <li class="list-group-item"><a th:href="normalForums">View All</a></li>
+    </ul>
 </div>
-
-
-<br>
-<a th:href="artForums">ART</a>
-<br>
-<a th:href="normalForums">View All</a>
-
 </body>
 </html>
